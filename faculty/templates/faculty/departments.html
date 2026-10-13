@@ -1,0 +1,41 @@
+{% extends "faculty/base.html" %}
+{% load faculty_extras %}
+{% block title %}Кафедри{% endblock title %}
+{% block content %}
+  {% include "faculty/includes/page_hero.html" with title="Кафедри" eyebrow="Структура факультету" lead="Кафедри відповідають за навчання, наукові дослідження та освітні програми факультету." topic="chemistry" %}
+  <section class="section">
+    <div class="container">
+      {% if departments %}
+        <div class="dept-rows">
+          {% for department in departments %}
+            <article class="dept-row topic-{{ department.name|topic }}">
+              <a class="dept-row__media"
+                 href="{% url 'department_detail' department.id %}"
+                 tabindex="-1"
+                 aria-hidden="true">{% include "faculty/includes/art.html" with topic=department.name|topic %}</a>
+              <div class="dept-row__body">
+                <span class="dept-row__index">{{ forloop.counter|stringformat:"02d" }}</span>
+                <h2 class="dept-row__title">
+                  <a href="{% url 'department_detail' department.id %}">{{ department.name }}</a>
+                </h2>
+                <p class="dept-row__summary">Завідувач(-ка): {{ department.head }}</p>
+                {% if department.specialties.all %}
+                  <ul class="pill-list">
+                    {% for specialty in department.specialties.all %}
+                      <li>
+                        <a class="pill"
+                           href="{% url 'program_detail' specialty.id %}">{{ specialty.code }} · {{ specialty.name }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty">Кафедри ще не додано. Додайте їх в адмін-панелі.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{# Inner page heading. Expects: title, lead (optional), crumb_url + crumb_label (optional). #}
+<section class="page-hero{% if topic %} topic-{{ topic }}{% endif %}">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок">
+      <a href="{% url 'home' %}">Головна</a>
+      {% if crumb_url %}
+        <span aria-hidden="true">/</span>
+        <a href="{{ crumb_url }}">{{ crumb_label }}</a>
+      {% endif %}
+    </nav>
+    {% if eyebrow %}<p class="eyebrow eyebrow--light">{{ eyebrow }}</p>{% endif %}
+    <h1 class="page-hero__title">{{ title }}</h1>
+    {% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
+  </div>
+  <div class="page-hero__art">{% include "faculty/includes/art.html" with topic=topic %}</div>
+</section>

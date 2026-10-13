@@ -1,0 +1,32 @@
+{% load static faculty_extras %}
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="{% block meta_description %}Факультет природничих наук Національного університету «Києво-Могилянська академія»: біологія, екологія, хімія, фізика, лабораторна діагностика.{% endblock meta_description %}">
+    <meta name="theme-color" content="#0b3d33">
+    <title>{% block title %}Факультет природничих наук{% endblock title %} — НаУКМА</title>
+    <link rel="icon"
+          href="{% static 'faculty/img/favicon.svg' %}"
+          type="image/svg+xml">
+    <link rel="preload"
+          href="{% static 'faculty/fonts/onest-cyrillic-wght-normal.woff2' %}"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    <link rel="stylesheet" href="{% static 'faculty/css/main.css' %}">
+    <script src="{% static 'faculty/js/main.js' %}" defer></script>
+  </head>
+  <body>
+    {% site_links as links %}
+    <a class="skip-link" href="#main">Перейти до змісту</a>
+    {% include "faculty/includes/header.html" %}
+    <main id="main">
+      {% block content %}
+      {% endblock content %}
+    </main>
+    {% include "faculty/includes/footer.html" %}
+  </body>
+</html>

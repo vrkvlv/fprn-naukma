@@ -1,0 +1,10 @@
+{% load faculty_extras %}
+<a class="dept-card topic-{{ department.name|topic }}"
+   href="{% url 'department_detail' department.id %}">
+  <span class="dept-card__media">{% include "faculty/includes/art.html" with topic=department.name|topic %}</span>
+  <span class="dept-card__body">
+    <span class="dept-card__title">{{ department.name }}</span>
+    <span class="dept-card__summary">Завідувач(-ка): {{ department.head }}</span>
+    <span class="link-arrow">Детальніше <span aria-hidden="true">→</span></span>
+  </span>
+</a>

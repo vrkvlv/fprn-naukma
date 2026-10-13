@@ -1,0 +1,57 @@
+<header class="site-header" data-header>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a class="topbar__link"
+         href="{{ links.ukma }}"
+         target="_blank"
+         rel="noopener">Національний університет «Києво-Могилянська академія»</a>
+      <div class="topbar__contacts">
+        <a class="topbar__link"
+           href="{{ links.admission }}"
+           target="_blank"
+           rel="noopener">Приймальна комісія</a>
+      </div>
+    </div>
+  </div>
+  <div class="container navbar">
+    <a class="logo"
+       href="{% url 'home' %}"
+       aria-label="Факультет природничих наук — на головну">
+      {% include "faculty/includes/logo_mark.html" %}
+      <span class="logo__text">
+        <span class="logo__title">Факультет природничих наук</span>
+        <span class="logo__subtitle">НаУКМА</span>
+      </span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Головне меню" data-nav>
+      <ul class="nav__list">
+        <li>
+          <a class="nav__link" href="{% url 'home' %}#about">Про факультет</a>
+        </li>
+        <li>
+          <a class="nav__link{% if request.resolver_match.url_name == 'departments' or request.resolver_match.url_name == 'department_detail' %} is-active{% endif %}"
+             href="{% url 'departments' %}">Кафедри</a>
+        </li>
+        <li>
+          <a class="nav__link{% if request.resolver_match.url_name == 'programs' or request.resolver_match.url_name == 'program_detail' %} is-active{% endif %}"
+             href="{% url 'programs' %}">Освітні програми</a>
+        </li>
+        <li>
+          <a class="nav__link" href="{% url 'home' %}#contacts">Контакти</a>
+        </li>
+      </ul>
+      <a class="btn btn--primary nav__cta"
+         href="{{ links.admission }}"
+         target="_blank"
+         rel="noopener">Вступ 2027</a>
+    </nav>
+    <button class="burger"
+            type="button"
+            aria-controls="site-nav"
+            aria-expanded="false"
+            aria-label="Відкрити меню"
+            data-burger>
+      <span class="visually-hidden">Меню</span>
+    </button>
+  </div>
+</header>

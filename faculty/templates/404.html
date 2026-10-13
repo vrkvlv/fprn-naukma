@@ -1,0 +1,12 @@
+{% extends "faculty/base.html" %}
+{% block title %}Сторінку не знайдено{% endblock title %}
+{% block content %}
+  <section class="notfound">
+    <div class="container notfound__inner">
+      <p class="notfound__code">404</p>
+      <h1 class="notfound__title">Такої сторінки не існує</h1>
+      <p class="notfound__text">Можливо, її перемістили або адреса введена з помилкою. Спробуйте почати з головної.</p>
+      <a class="btn btn--primary btn--lg" href="{% url 'home' %}">На головну</a>
+    </div>
+  </section>
+{% endblock content %}

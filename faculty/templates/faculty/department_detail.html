@@ -1,0 +1,68 @@
+{% extends "faculty/base.html" %}
+{% load faculty_extras %}
+{% block title %}{{ department.name }}{% endblock title %}
+{% block content %}
+  {% url 'departments' as crumb_url %}
+  {% with topic_name=department.name|topic %}
+    {% include "faculty/includes/page_hero.html" with title=department.name topic=topic_name crumb_url=crumb_url crumb_label="Кафедри" %}
+    <section class="section">
+      <div class="container split split--wide">
+        <div>
+          <h2 class="block-title block-title--first">Освітні програми</h2>
+          {% if department.specialties.all %}
+            <div class="grid grid--2">
+              {% for specialty in department.specialties.all %}
+                {% include "faculty/includes/program_card.html" %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="empty empty--left">Програм кафедри поки не додано.</p>
+          {% endif %}
+          <h2 class="block-title">Викладачі</h2>
+          {% if department.teachers.all %}
+            <div class="grid grid--2">
+              {% for teacher in department.teachers.all %}
+                {% include "faculty/includes/teacher_card.html" %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="empty empty--left">Викладачів кафедри поки не додано.</p>
+          {% endif %}
+        </div>
+        <aside class="sidebar">
+          <div class="info-card topic-{{ topic_name }}">
+            <span class="info-card__label">Завідувач(-ка) кафедри</span>
+            <h2 class="info-card__title">{{ department.head }}</h2>
+            <dl class="info-list">
+              <div>
+                <dt>Освітніх програм</dt>
+                <dd>
+                  {{ department.specialties.count }}
+                </dd>
+              </div>
+              <div>
+                <dt>Викладачів</dt>
+                <dd>
+                  {{ department.teachers.count }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+          {% all_departments as others %}
+          <nav class="side-nav" aria-label="Інші кафедри">
+            <h2 class="side-nav__title">Інші кафедри</h2>
+            <ul>
+              {% for other in others %}
+                {% if other.id != department.id %}
+                  <li>
+                    <a href="{% url 'department_detail' other.id %}">{{ other.name }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </nav>
+        </aside>
+      </div>
+    </section>
+  {% endwith %}
+{% endblock content %}

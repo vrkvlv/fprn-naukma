@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logo logo--light" href="{% url 'home' %}">
+          {% include "faculty/includes/logo_mark.html" %}
+          <span class="logo__text">
+            <span class="logo__title">Факультет природничих наук</span>
+            <span class="logo__subtitle">НаУКМА</span>
+          </span>
+        </a>
+        <p class="footer__tagline">Досліджуємо живу й неживу природу — від молекули до біосфери.</p>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">Факультет</h2>
+        <ul class="footer__list">
+          <li>
+            <a href="{% url 'home' %}#about">Про факультет</a>
+          </li>
+          <li>
+            <a href="{% url 'departments' %}">Кафедри</a>
+          </li>
+          <li>
+            <a href="{% url 'programs' %}">Освітні програми</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}#contacts">Контакти</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">Вступникам</h2>
+        <ul class="footer__list">
+          <li>
+            <a href="{{ links.admission }}" target="_blank" rel="noopener">Приймальна комісія</a>
+          </li>
+          <li>
+            <a href="{{ links.ukma }}" target="_blank" rel="noopener">Сайт НаУКМА</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__title">Адреса</h2>
+        <address class="footer__address">
+          вул. Григорія Сковороди, 2
+          <br>
+          Київ, 04070
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© {% now "Y" %} Факультет природничих наук НаУКМА</span>
+      <a href="#main" class="footer__up">Нагору ↑</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,92 @@
+{# Decorative illustration used when an item has no photo. Expects `topic`. #}
+<div class="art art--{{ topic|default:'general' }}" aria-hidden="true">
+  <svg class="art__svg"
+       viewBox="0 0 400 260"
+       preserveAspectRatio="xMidYMid slice"
+       focusable="false">
+    {% if topic == "biology" %}
+      <g fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="300" cy="120" r="78" opacity=".55" />
+      <circle cx="300" cy="120" r="30" opacity=".9" />
+      <circle cx="120" cy="190" r="46" opacity=".45" />
+      <circle cx="120" cy="190" r="14" fill="currentColor" opacity=".5" />
+      <path d="M40 20c40 30 40 60 0 90s-40 60 0 90" opacity=".7" />
+      <path d="M80 20c-40 30-40 60 0 90s40 60 0 90" opacity=".7" />
+      <path d="M46 42h28M46 88h28M46 132h28M46 178h28" opacity=".6" />
+      </g>
+      <g fill="currentColor" opacity=".7">
+      <circle cx="275" cy="80" r="5" />
+      <circle cx="340" cy="150" r="4" />
+      <circle cx="318" cy="72" r="3" />
+      </g>
+    {% elif topic == "ecology" %}
+      <g fill="none" stroke="currentColor" stroke-width="2" opacity=".7">
+      <path d="M-10 200c60-40 120-40 180-10s130 30 240-20" />
+      <path d="M-10 225c60-35 120-35 180-8s130 26 240-18" opacity=".6" />
+      <path d="M-10 250c60-30 120-30 180-6s130 22 240-16" opacity=".4" />
+      </g>
+      <path d="M250 150c0-60 45-100 110-104-4 66-45 110-104 110" fill="currentColor" opacity=".35" />
+      <path d="M252 156 330 74" stroke="currentColor" stroke-width="2.5" fill="none" />
+      <path d="M90 120c-6-40 18-70 60-78 8 42-16 72-54 80" fill="none" stroke="currentColor" stroke-width="2" opacity=".8" />
+      <circle cx="330" cy="40" r="14" fill="currentColor" opacity=".25" />
+    {% elif topic == "chemistry" %}
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+      <path d="M230 60 282 90v60l-52 30-52-30V90Z" />
+      <path d="M242 82 270 98v44l-28 16" opacity=".6" />
+      <path d="M282 90l50-28M282 150l48 28M178 150l-50 28M230 60V14" opacity=".75" />
+      <path d="M80 70 110 87v35L80 139 50 122V87Z" opacity=".5" />
+      </g>
+      <g fill="currentColor">
+      <circle cx="332" cy="62" r="11" opacity=".55" />
+      <circle cx="330" cy="178" r="8" opacity=".45" />
+      <circle cx="128" cy="178" r="13" opacity=".4" />
+      <circle cx="230" cy="14" r="7" opacity=".6" />
+      </g>
+    {% elif topic == "physics" %}
+      <g fill="none" stroke="currentColor" stroke-width="2">
+      <ellipse cx="270" cy="130" rx="110" ry="36" opacity=".6" />
+      <ellipse cx="270" cy="130" rx="110" ry="36" transform="rotate(60 270 130)" opacity=".6" />
+      <ellipse cx="270" cy="130" rx="110" ry="36" transform="rotate(-60 270 130)" opacity=".6" />
+      <path d="M0 210q25-40 50 0t50 0 50 0 50 0" opacity=".5" />
+      </g>
+      <circle cx="270" cy="130" r="14" fill="currentColor" opacity=".8" />
+      <circle cx="380" cy="130" r="6" fill="currentColor" />
+      <circle cx="215" cy="35" r="5" fill="currentColor" opacity=".7" />
+    {% elif topic == "diagnostics" %}
+      <g fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="280" cy="130" r="90" opacity=".55" />
+      <circle cx="280" cy="130" r="74" opacity=".3" />
+      <path d="M0 150h70l18-50 24 100 22-70 14 20h60" stroke-width="2.5" opacity=".85" />
+      </g>
+      <g fill="currentColor" opacity=".55">
+      <circle cx="250" cy="100" r="9" />
+      <circle cx="300" cy="150" r="13" />
+      <circle cx="310" cy="95" r="5" />
+      <circle cx="245" cy="165" r="6" />
+      </g>
+    {% elif topic == "sport" %}
+      <g fill="none" stroke="currentColor" stroke-width="2" opacity=".7">
+      <rect x="120" y="50" width="300" height="160" rx="80" />
+      <rect x="150" y="80" width="240" height="100" rx="50" opacity=".6" />
+      <rect x="180" y="110" width="180" height="40" rx="20" opacity=".4" />
+      </g>
+      <circle cx="70" cy="80" r="30" fill="currentColor" opacity=".3" />
+    {% else %}
+      <g fill="currentColor" opacity=".5">
+      <circle cx="60" cy="60" r="3" />
+      <circle cx="110" cy="60" r="3" />
+      <circle cx="160" cy="60" r="3" />
+      <circle cx="60" cy="110" r="3" />
+      <circle cx="110" cy="110" r="3" />
+      <circle cx="160" cy="110" r="3" />
+      <circle cx="60" cy="160" r="3" />
+      <circle cx="110" cy="160" r="3" />
+      <circle cx="160" cy="160" r="3" />
+      </g>
+      <g fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M290 40 350 75v70l-60 35-60-35V75Z" opacity=".7" />
+      <path d="M250 150c0-40 30-66 76-70-3 44-30 72-70 74" opacity=".6" />
+      </g>
+    {% endif %}
+  </svg>
+</div>

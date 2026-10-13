@@ -1,0 +1,82 @@
+{% extends "faculty/base.html" %}
+{% load faculty_extras %}
+{% block title %}{{ specialty.name }}{% endblock title %}
+{% block meta_description %}{{ specialty.description|truncatewords:30 }}{% endblock meta_description %}
+{% block content %}
+  {% url 'programs' as crumb_url %}
+  {% with topic_name=specialty.department.name|topic %}
+    {% include "faculty/includes/page_hero.html" with title=specialty.name eyebrow="Освітня програма" topic=topic_name crumb_url=crumb_url crumb_label="Освітні програми" %}
+    <div class="container">
+      <dl class="keyfacts topic-{{ topic_name }}">
+        <div>
+          <dt>Код спеціальності</dt>
+          <dd>
+            {{ specialty.code }}
+          </dd>
+        </div>
+        <div>
+          <dt>Випускова кафедра</dt>
+          <dd>
+            {{ specialty.department.name }}
+          </dd>
+        </div>
+        <div>
+          <dt>Координатор(-ка)</dt>
+          <dd>
+            {{ specialty.coordinator_name }}
+          </dd>
+        </div>
+        <div>
+          <dt>Дисциплін у програмі</dt>
+          <dd>
+            {{ specialty.disciplines|split_items|length }}
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <section class="section">
+      <div class="container split split--wide">
+        <div>
+          <div class="prose">
+            <h2>Про програму</h2>
+            {{ specialty.description|linebreaks }}
+          </div>
+          {% if specialty.disciplines %}
+            <h2 class="block-title">Дисципліни</h2>
+            <ol class="discipline-list topic-{{ topic_name }}">
+              {% for item in specialty.disciplines|split_items %}<li>{{ item }}</li>{% endfor %}
+            </ol>
+          {% endif %}
+        </div>
+        <aside class="sidebar">
+          <div class="info-card topic-{{ topic_name }}">
+            <span class="info-card__label">Координатор(-ка) програми</span>
+            <h2 class="info-card__title">{{ specialty.coordinator_name }}</h2>
+            {% if specialty.coordinator_contact %}
+              {% if specialty.coordinator_contact|is_email %}
+                <a class="btn btn--primary btn--block"
+                   href="mailto:{{ specialty.coordinator_contact }}">{{ specialty.coordinator_contact }}</a>
+              {% else %}
+                <p class="info-card__contact">{{ specialty.coordinator_contact }}</p>
+              {% endif %}
+            {% endif %}
+          </div>
+          <a class="info-card info-card--link topic-{{ topic_name }}"
+             href="{% url 'department_detail' specialty.department.id %}">
+            <span class="info-card__label">Випускова кафедра</span>
+            <span class="info-card__title">{{ specialty.department.name }}</span>
+            <span class="link-arrow">На сторінку кафедри <span aria-hidden="true">→</span></span>
+          </a>
+          <div class="info-card info-card--accent">
+            <h2 class="info-card__title">Готові вступати?</h2>
+            <p>Правила прийому, конкурсні предмети та ключові дати — на сайті приймальної комісії НаУКМА.</p>
+            <a class="btn btn--lime btn--block"
+               href="{{ links.admission }}"
+               target="_blank"
+               rel="noopener">Умови вступу</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  {% endwith %}
+{% endblock content %}
