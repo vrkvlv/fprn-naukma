@@ -1,0 +1,14 @@
+{% load faculty_extras %}
+<a class="program-card topic-{{ specialty.department.name|topic }}"
+   href="{% url 'program_detail' specialty.id %}">
+  <span class="program-card__top">
+    {% if specialty.code %}<span class="program-card__code">{{ specialty.code }}</span>{% endif %}
+    <span class="program-card__level">{{ specialty.department.name }}</span>
+  </span>
+  <span class="program-card__title">{{ specialty.name }}</span>
+  <span class="program-card__summary">{{ specialty.description|truncatewords:22 }}</span>
+  <span class="program-card__foot">
+    <span>Координатор: {{ specialty.coordinator_name }}</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </span>
+</a>

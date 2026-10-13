@@ -1,0 +1,197 @@
+{% extends "faculty/base.html" %}
+{% load faculty_extras %}
+{% block content %}
+  {% faculty_facts as facts %}
+  {% all_specialties as specialties %}
+  {% all_departments as departments %}
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <p class="eyebrow eyebrow--light">Києво-Могилянська академія · з 1615 року</p>
+        <h1 class="hero__title">
+          Факультет
+          <br>
+          <span class="hero__accent">природничих</span> наук
+        </h1>
+        <p class="hero__lead">
+          Біологія, екологія, хімія та фізика у форматі справжньої науки: лабораторії з першого курсу, дослідницькі центри й академічна свобода Могилянки.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--lime btn--lg" href="{% url 'programs' %}">Обрати програму</a>
+          <a class="btn btn--ghost btn--lg"
+             href="{{ links.admission }}"
+             target="_blank"
+             rel="noopener">Як вступити</a>
+        </div>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <svg class="hero__molecule" viewBox="0 0 520 520" focusable="false">
+          <g class="orbit orbit--1" fill="none" stroke="currentColor" stroke-width="1.5">
+          <ellipse cx="260" cy="260" rx="230" ry="88" />
+          </g>
+          <g class="orbit orbit--2" fill="none" stroke="currentColor" stroke-width="1.5">
+          <ellipse cx="260" cy="260" rx="230" ry="88" transform="rotate(60 260 260)" />
+          </g>
+          <g class="orbit orbit--3" fill="none" stroke="currentColor" stroke-width="1.5">
+          <ellipse cx="260" cy="260" rx="230" ry="88" transform="rotate(-60 260 260)" />
+          </g>
+          <path d="M260 170 338 215v90l-78 45-78-45v-90Z" fill="none" stroke="#c6ef5b" stroke-width="3" stroke-linejoin="round" />
+          <path d="M210 300c0-60 44-100 112-104-4 68-44 112-104 112" fill="#c6ef5b" opacity=".9" />
+          <path d="M214 306 290 230" stroke="#0b3d33" stroke-width="4" stroke-linecap="round" />
+          <circle class="electron" cx="490" cy="260" r="9" fill="#c6ef5b" />
+          <circle cx="145" cy="60" r="6" fill="currentColor" />
+          <circle cx="380" cy="462" r="6" fill="currentColor" />
+        </svg>
+        <ul class="hero__chips">
+          <li class="chip chip--biology">Біологія</li>
+          <li class="chip chip--ecology">Екологія</li>
+          <li class="chip chip--chemistry">Хімія</li>
+          <li class="chip chip--physics">Фізика</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <dl class="facts">
+        {% for fact in facts %}
+          <div class="facts__item">
+            <dt class="facts__label">{{ fact.label }}</dt>
+            <dd class="facts__value">
+              {{ fact.value }}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <div class="container split">
+      <div class="prose">
+        <p class="eyebrow">Про факультет</p>
+        {% if content %}
+          {{ content.description|linebreaks }}
+        {% else %}
+          <p>
+            Факультет природничих наук об'єднує біологів, екологів, хіміків і фізиків, які навчають і досліджують у традиціях Києво-Могилянської академії.
+          </p>
+        {% endif %}
+      </div>
+      {% if content.main_info %}
+        <aside class="info-card info-card--accent">
+          <h2 class="info-card__title">Основна інформація</h2>
+          <div class="info-card__text">{{ content.main_info|linebreaks }}</div>
+        </aside>
+      {% endif %}
+    </div>
+  </section>
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Чому ФПрН</p>
+          <h2 class="section-title">Наука, яку можна торкнутися руками</h2>
+        </div>
+        <p class="section-head__text">
+          Ми поєднуємо фундаментальну підготовку з реальною дослідницькою роботою — так, як це прийнято в провідних університетах світу.
+        </p>
+      </div>
+      <ul class="features">
+        <li class="feature">
+          <span class="feature__num">01</span>
+          <h3 class="feature__title">Лабораторії з першого курсу</h3>
+          <p>Практичні заняття в навчальних і наукових лабораторіях факультету, а не лише теорія в аудиторії.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__num">02</span>
+          <h3 class="feature__title">Наукові центри</h3>
+          <p>Мембранні, молекулярно-клітинні та кліматичні дослідження, до яких долучаються студенти.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__num">03</span>
+          <h3 class="feature__title">Академічна свобода</h3>
+          <p>Могилянська система вибіркових дисциплін дозволяє будувати власну освітню траєкторію.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__num">04</span>
+          <h3 class="feature__title">Малі групи</h3>
+          <p>Викладачі знають студентів на ім'я, а науковий керівник з'являється задовго до диплома.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__num">05</span>
+          <h3 class="feature__title">Практика та партнери</h3>
+          <p>Практики в інститутах НАН України, лабораторіях, екологічних та міжнародних організаціях.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__num">06</span>
+          <h3 class="feature__title">Кампус на Подолі</h3>
+          <p>Навчання в історичному серці Києва — в одному з найстаріших університетів Східної Європи.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% if specialties %}
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Освіта</p>
+            <h2 class="section-title">Освітні програми</h2>
+          </div>
+          <a class="link-arrow" href="{% url 'programs' %}">Усі програми <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="grid grid--3">
+          {% for specialty in specialties|slice:":6" %}
+            {% include "faculty/includes/program_card.html" %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  {% if departments %}
+    <section class="section section--tinted">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Структура</p>
+            <h2 class="section-title">Кафедри факультету</h2>
+          </div>
+          <a class="link-arrow" href="{% url 'departments' %}">Усі кафедри <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="grid grid--3">
+          {% for department in departments %}
+            {% include "faculty/includes/dept_card.html" %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  <section class="section" id="contacts">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Контакти</p>
+        <h2 class="section-title">Зв'яжіться з деканатом</h2>
+        <div class="contact-card contact-card--wide">
+          {% if content.contacts %}
+            <div class="prose">{{ content.contacts|urlize|linebreaks }}</div>
+          {% else %}
+            <p class="contact-card__value">вул. Григорія Сковороди, 2, Київ, 04070</p>
+            <p class="contact-card__note">Корпус 3, кімнати 216–217</p>
+          {% endif %}
+        </div>
+        <div class="contact-card contact-card--accent">
+          <span class="contact-card__label">Вступникам</span>
+          <p class="contact-card__value">Приймальна комісія НаУКМА</p>
+          <a class="link-arrow"
+             href="{{ links.admission }}"
+             target="_blank"
+             rel="noopener">vstup.ukma.edu.ua <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe title="Мапа: Києво-Могилянська академія"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=30.5125%2C50.4610%2C30.5255%2C50.4680&amp;layer=mapnik&amp;marker=50.4645%2C30.5190"
+                loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

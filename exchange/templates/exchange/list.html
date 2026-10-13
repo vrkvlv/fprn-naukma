@@ -1,0 +1,22 @@
+{% extends 'faculty/base.html' %} <!-- Використайте свій базовий шаблон -->
+
+{% block content %}
+  <h1>Програми академічного обміну</h1>
+  <ul>
+    {% for program in programs %}
+      <li>
+        <strong>{{ program.university }}, {{ program.country }}</strong><br>
+        Мови: {{ program.languages }}<br>
+        Місць: {{ program.places }}<br>
+        Дедлайн: {{ program.deadline|date:"d.m.Y" }}<br>
+        <em>{{ program.description }}</em><br>
+        Статус:
+        {% if program.is_open %}
+            <span style="color: green;">Прийом триває</span>
+        {% else %}
+            <span style="color: red;">Прийом завершено</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "faculty/base.html" %}
+{% load faculty_extras %}
+{% block title %}Освітні програми{% endblock title %}
+{% block content %}
+  {% include "faculty/includes/page_hero.html" with title="Освітні програми" eyebrow="Освіта" lead="Програми з біології, екології, хімії, фізики та лабораторної діагностики." topic="biology" %}
+  <section class="section">
+    <div class="container">
+      {% if specialties %}
+        {% all_departments as departments %}
+        <nav class="filter" aria-label="Фільтр за кафедрою" data-filter>
+          <button class="filter__item is-active" type="button" data-filter-value="all">Усі</button>
+          {% for department in departments %}
+            {% if department.specialties.exists %}
+              <button class="filter__item"
+                      type="button"
+                      data-filter-value="{{ department.id }}">{{ department.name }}</button>
+            {% endif %}
+          {% endfor %}
+        </nav>
+        <div class="grid grid--3">
+          {% for specialty in specialties %}
+            <div class="filter-target" data-filter-key="{{ specialty.department_id }}">
+              {% include "faculty/includes/program_card.html" %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty">Освітні програми ще не додано. Додайте їх в адмін-панелі.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endblock content %}

@@ -17,9 +17,9 @@ Including another URLconf
 
 
 from django.contrib import admin
-from django.urls import path, include  # <-- 1. Обов'язково імпортуємо include сюди
-
+from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('faculty.urls')),  # <-- 2. Підключаємо urls з папки faculty
+    path('', include('faculty.urls')),
+    path('exchange/', include('exchange.urls')),
 ]

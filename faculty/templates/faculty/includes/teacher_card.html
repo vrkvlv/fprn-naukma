@@ -1,0 +1,11 @@
+{% load faculty_extras %}
+<article class="person">
+  <div class="person__photo">
+    <span class="person__initials" aria-hidden="true">{{ teacher.name|initials }}</span>
+  </div>
+  <div class="person__body">
+    <p class="person__position">{{ teacher.position }}</p>
+    <h3 class="person__name">{{ teacher.name }}</h3>
+    {% if teacher.degree %}<p class="person__degree">{{ teacher.degree }}</p>{% endif %}
+  </div>
+</article>

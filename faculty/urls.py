@@ -1,7 +1,15 @@
-from django.contrib import admin
-from django.urls import path, include  # <-- 1. Обов'язково імпортуємо include сюди
+from django.urls import path
+
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('faculty.urls')),  # <-- 2. Підключаємо urls з папки faculty
+    path("", views.home_view, name="home"),
+    path("programs/", views.programs_list_view, name="programs"),
+    path("programs/<int:id>/", views.program_detail_view, name="program_detail"),
+    path("departments/", views.departments_list_view, name="departments"),
+    path(
+        "departments/<int:id>/",
+        views.department_detail_view,
+        name="department_detail",
+    ),
 ]
